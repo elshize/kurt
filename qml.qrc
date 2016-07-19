@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ic_save_black_48px.svg</file>
+        <file>ic_mode_edit_black_48px.svg</file>
+    </qresource>
+</RCC>
