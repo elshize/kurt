@@ -6,32 +6,33 @@ FileIO::FileIO(QObject *parent) : QObject(parent)
 {
 }
 
-FileIO::FileIO(QString f): file(f)
+FileIO::FileIO(QFile *f)
 {
+    pFile = f;
 }
 
-void FileIO::save(QString text) {
+bool FileIO::save(QString text) {
 
-    file.open(QIODevice::ReadWrite | QIODevice::Truncate | QFile::Text);
-    QTextStream stream(&file);
+    if (pFile == 0) return false;
+    if (!pFile->open(QIODevice::ReadWrite | QIODevice::Truncate | QFile::Text)) return false;
+    QTextStream stream(pFile);
     stream << text;
     stream.flush();
-    file.close();
+    pFile->close();
+
+    return true;
 
 }
 
-QString FileIO::load() {
+bool FileIO::load() {
 
-    file.open(QIODevice::ReadWrite | QFile::Text);
-    QTextStream stream(&file);
-    QString result = stream.readAll();
-    file.close();
-    return result;
+    if (pFile == 0) return false;
+    if (!pFile->open(QIODevice::ReadWrite | QFile::Text)) return false;
+    QTextStream stream(pFile);
+    mContent = stream.readAll();
+    pFile->close();
+    return true;
 
-}
-
-QString FileIO::name() {
-    return file.fileName();
 }
 
 FileIO::~FileIO()

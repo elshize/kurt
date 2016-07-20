@@ -4,17 +4,19 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
-
 class FileIO : public QObject
 {
     Q_OBJECT
-    QFile file;
+    QFile* pFile;
+    QString mContent;
 public:
     explicit FileIO(QObject *parent = 0);
-    FileIO(QString f);
-    Q_INVOKABLE void save(QString text);
-    Q_INVOKABLE QString load();
-    Q_INVOKABLE QString name();
+    FileIO(QFile *f);
+    Q_INVOKABLE bool save(QString text);
+    Q_INVOKABLE bool load();
+    Q_INVOKABLE QString content() { return mContent; }
+    Q_INVOKABLE QString name() { return pFile != 0 ? pFile->fileName() : "Untitled"; }
+    Q_INVOKABLE bool isSet() { return pFile != 0; }
     ~FileIO();
 
 signals:
