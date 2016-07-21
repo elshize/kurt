@@ -42,6 +42,12 @@ Flickable {
             }
         }
 
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: Qt.IBeamCursor
+            acceptedButtons: Qt.NoButton
+        }
+
         onTextChanged: {
             editStatusHandler.edited()
         }
@@ -57,11 +63,15 @@ Flickable {
         }
 
         function pageDown() {
+            scrollBar.active = true
             move(flickable.height)
+            scrollBar.active = false
         }
 
         function pageUp() {
+            scrollBar.active = true
             move(-flickable.height)
+            scrollBar.active = false
         }
 
         function move(y) {
@@ -78,6 +88,22 @@ Flickable {
 
     }
 
-    ScrollBar.vertical: ScrollBar { }
+    ScrollBar.vertical: ScrollBar {
+        id: scrollBar
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.NoButton
+            onEntered: scrollBar.active = true
+            onExited: scrollBar.active = false
+        }
+
+        Timer {
+            id: statusTimer
+            interval: 500; running: false; repeat: false
+            onTriggered: scrollBar.active = false
+        }
+    }
 
 }
