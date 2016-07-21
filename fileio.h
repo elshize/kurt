@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE QString content() { return mContent; }
     Q_INVOKABLE QString name() { return pFile != 0 ? pFile->fileName() : "Untitled"; }
     Q_INVOKABLE bool isSet() { return pFile != 0; }
+    Q_INVOKABLE void setFile(QString fileName);
     ~FileIO();
 
 signals:

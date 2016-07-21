@@ -38,19 +38,15 @@ Rectangle {
     }
 
     function edited() {
-        if (sheet.updateStatus) {
-            statusIcon.source = "../icons/ic_mode_edit_black_48px.svg"
-            showStatus()
-            editing = true
-        }
-        sheet.updateStatus = true
+        editing = true
+        statusIcon.source = "../icons/ic_mode_edit_black_48px.svg"
+        showStatus()
     }
 
     function saved() {
+        editing = false
         statusIcon.source = "../icons/ic_save_black_48px.svg"
         showDisappearingStatus()
-        sheet.updateStatus = false
-        editing = false
     }
 
     function showStatus() {

@@ -4,10 +4,12 @@ import QtGraphicalEffects 1.0
 
 Flickable {
     id: flickable
+
     property alias textArea: textArea
     property real padding: 40
-    property EditStatusHandler editStatusHandler: EditStatusHandler {}
-    property bool updateStatus: false
+
+    property Item editStatusHandler: Item {}
+    property bool persisting: false
 
     TextArea.flickable: TextArea {
         id: textArea
@@ -49,7 +51,8 @@ Flickable {
         }
 
         onTextChanged: {
-            editStatusHandler.edited()
+            if (!persisting) editStatusHandler.edited()
+            persisting = false
         }
 
         onCursorPositionChanged: {
@@ -86,6 +89,11 @@ Flickable {
 //                flickable.contentY = positionToRectangle(cursorPosition).y - flickable.height / 2
         }
 
+    }
+
+    function setTextPersistEditing(t) {
+        persisting = true
+        textArea.text = t
     }
 
     ScrollBar.vertical: ScrollBar {
