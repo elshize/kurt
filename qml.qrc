@@ -7,5 +7,7 @@
         <file>components/EditStatusHandler.qml</file>
         <file>components/ErrorWindow.qml</file>
         <file>icons/ic_error_outline_black_48px.svg</file>
+        <file>components/CloseDialog.qml</file>
+        <file>icons/ic_info_outline_black_48px.svg</file>
     </qresource>
 </RCC>

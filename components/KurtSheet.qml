@@ -7,10 +7,10 @@ Flickable {
     property alias textArea: textArea
     property real padding: 40
     property EditStatusHandler editStatusHandler: EditStatusHandler {}
+    property bool updateStatus: false
 
     TextArea.flickable: TextArea {
         id: textArea
-        property bool updateStatus: false
 
         anchors.fill: parent
 

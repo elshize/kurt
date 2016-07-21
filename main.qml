@@ -1,6 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
-import QtQuick.Window 2.0
+import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
 import "components"
 
@@ -11,6 +11,13 @@ Window {
     height: 800
 
     color: "#eee"
+
+    onClosing: {
+        if (editStatusHandler.editing) {
+            closeDialog.open()
+            close.accepted = false
+        }
+    }
 
     KurtSheet {
         id: sheet
@@ -36,14 +43,25 @@ Window {
 
     Shortcut {
         sequence: StandardKey.Save
-        onActivated: {
-            if (!FileIO.save(sheet.textArea.text)) errorWindow.showWithMessage("Saving file " + FileIO.name() + " failed.")
-            else editStatusHandler.saved()
-        }
+        onActivated: save()
     }
 
     ErrorWindow {
         id: errorWindow
+    }
+
+    CloseDialog {
+        id: closeDialog
+        onAccepted: {
+            save()
+            Qt.quit()
+        }
+        onDiscard: Qt.quit()
+    }
+
+    function save() {
+        if (!FileIO.save(sheet.textArea.text)) errorWindow.showWithMessage("Saving file " + FileIO.name() + " failed.")
+        else editStatusHandler.saved()
     }
 
     function loadText() {

@@ -5,6 +5,7 @@ Rectangle {
     id: status
 
     property TextArea textArea
+    property bool editing: false
 
     width: 50
     height: 50
@@ -37,16 +38,19 @@ Rectangle {
     }
 
     function edited() {
-        if (sheet.textArea.updateStatus) {
+        if (sheet.updateStatus) {
             statusIcon.source = "../icons/ic_mode_edit_black_48px.svg"
             showStatus()
+            editing = true
         }
-        sheet.textArea.updateStatus = true
+        sheet.updateStatus = true
     }
 
     function saved() {
         statusIcon.source = "../icons/ic_save_black_48px.svg"
         showDisappearingStatus()
+        sheet.updateStatus = false
+        editing = false
     }
 
     function showStatus() {
