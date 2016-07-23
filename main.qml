@@ -3,21 +3,17 @@ import QtQuick.Controls 2.0
 import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
 import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.3
 import "components"
 
-Window {
+ApplicationWindow {
     id: mainWindow
     visible: true
     width: 1000
     height: 800
 
-    color: "#eee"
-
-    onClosing: {
-        if (editStatusHandler.editing) {
-            closeDialog.open()
-            close.accepted = false
-        }
+    background: Rectangle {
+        color: "#eee"
     }
 
     KurtSheet {
@@ -30,22 +26,49 @@ Window {
         anchors.bottomMargin: 30
         width: 800
 
-        editStatusHandler: editStatusHandler
+        textArea.text: editStatusHandler.setTextPersistEditing(loadText())
 
-        textArea.text: setTextPersistEditing(loadText())
+        Component.onCompleted: {
+            console.log(editStatusHandler.editing)
+        }
     }
 
     EditStatusHandler {
         id: editStatusHandler
-        anchors.right: sheet.right
+        anchors.left: sheet.right
+        anchors.leftMargin: 10
         anchors.top: sheet.top
-        anchors.margins: 15
+        textArea: sheet.textArea
     }
+
+    ColumnLayout {
+
+        anchors.bottom: sheet.bottom
+        anchors.left: sheet.right
+        anchors.leftMargin: 10
+        spacing: 0
+
+        PageCount {
+            id: pageCount
+            sheet: sheet
+        }
+
+    }
+
+    /***** Global shortcuts *****/
 
     Shortcut {
         sequence: StandardKey.Save
         onActivated: saveOrSaveAs()
     }
+
+    Shortcut {
+        sequence: "F2"
+        onActivated: pageCount.visible = !pageCount.visible
+    }
+
+
+    /***** Dialogs *****/
 
     ErrorWindow {
         id: errorWindow
@@ -55,6 +78,8 @@ Window {
         id: closeDialog
         onAccepted: saveOrSaveAs(true)
         onDiscard: Qt.quit()
+        window: mainWindow
+        sheet: sheet
     }
 
     FileDialog {
@@ -69,6 +94,9 @@ Window {
         onRejected: quit = false
     }
 
+
+    /***** Functions *****/
+
     function saveOrSaveAs(quit) {
         if (!FileIO.isSet()) {
             if (quit) saveDialog.quit = true
@@ -82,8 +110,10 @@ Window {
         if (!FileIO.save(sheet.textArea.text)) {
             errorWindow.showWithMessage("Saving file " + FileIO.name() + " failed.")
             return false
+            return false
         }
         editStatusHandler.saved()
+        closeDialog.oldText = sheet.textArea.text
         return true
     }
 
@@ -92,6 +122,7 @@ Window {
         if (!FileIO.isSet()) {}
         else if (!FileIO.load()) errorWindow.showWithMessage("Loading file " + FileIO.name() + " failed.");
         else text = FileIO.content();
+        closeDialog.oldText = text
         return text;
     }
 

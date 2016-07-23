@@ -1,8 +1,13 @@
-import QtQuick 2.0
+import QtQuick 2.7
+import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
 import QtQuick.Dialogs 1.2
 
 Dialog {
+
+    property Window window
+    property KurtSheet sheet
+    property string oldText
 
     id: dialog
 
@@ -27,6 +32,16 @@ Dialog {
         anchors.margins: 10
         text: "Do you want to save your unsaved changes before you exit?"
         renderType: Text.NativeRendering
+    }
+
+    Connections {
+        target: window
+        onClosing: {
+            if (sheet.textArea.text != oldText) {
+                closeDialog.open()
+                close.accepted = false
+            }
+        }
     }
 
 }

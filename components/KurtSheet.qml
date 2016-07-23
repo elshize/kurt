@@ -8,9 +8,6 @@ Flickable {
     property alias textArea: textArea
     property real padding: 40
 
-    property Item editStatusHandler: Item {}
-    property bool persisting: false
-
     TextArea.flickable: TextArea {
         id: textArea
 
@@ -35,24 +32,13 @@ Flickable {
         background: Rectangle {
             color: "white"
             layer.enabled: true
-            layer.effect: DropShadow {
-                verticalOffset: 1
-                horizontalOffset: 1
-                spread: 0.1
-                color: "#ddd"
-                samples: 20
-            }
+            layer.effect: StandardShadow {}
         }
 
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.IBeamCursor
             acceptedButtons: Qt.NoButton
-        }
-
-        onTextChanged: {
-            if (!persisting) editStatusHandler.edited()
-            persisting = false
         }
 
         onCursorPositionChanged: {
@@ -89,11 +75,6 @@ Flickable {
 //                flickable.contentY = positionToRectangle(cursorPosition).y - flickable.height / 2
         }
 
-    }
-
-    function setTextPersistEditing(t) {
-        persisting = true
-        textArea.text = t
     }
 
     ScrollBar.vertical: ScrollBar {

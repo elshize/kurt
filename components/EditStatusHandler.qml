@@ -6,11 +6,15 @@ Rectangle {
 
     property TextArea textArea
     property bool editing: false
+    property bool persisting: false
 
     width: 50
     height: 50
 
-    color: "#eee"
+    color: "#fff"
+
+    layer.enabled: true
+    layer.effect: StandardShadow {}
 
     Image {
         id: statusIcon
@@ -37,6 +41,24 @@ Rectangle {
         onTriggered: statusFadeOut.start()
     }
 
+    Connections {
+        target: textArea
+        onTextChanged: {
+            console.log(editing)
+            if (!textArea.persisting) edited()
+            persisting = false
+        }
+    }
+
+    Component.onCompleted: {
+        console.log(editing)
+    }
+
+    function setTextPersistEditing(t) {
+        persisting = true
+        textArea.text = t
+    }
+
     function edited() {
         editing = true
         statusIcon.source = "../icons/ic_mode_edit_black_48px.svg"
@@ -60,5 +82,6 @@ Rectangle {
         showStatus()
         statusTimer.start()
     }
+
 }
 
