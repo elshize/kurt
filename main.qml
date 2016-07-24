@@ -27,10 +27,6 @@ ApplicationWindow {
         width: 800
 
         textArea.text: editStatusHandler.setTextPersistEditing(loadText())
-
-        Component.onCompleted: {
-            console.log(editStatusHandler.editing)
-        }
     }
 
     EditStatusHandler {
@@ -65,6 +61,16 @@ ApplicationWindow {
     Shortcut {
         sequence: "F2"
         onActivated: pageCount.visible = !pageCount.visible
+    }
+
+    Shortcut {
+        sequence: "F3"
+        onActivated: sheet.switchLineHighlight()
+    }
+
+    Shortcut {
+        sequence: "F4"
+        onActivated: sheet.switchFocusMode()
     }
 
 

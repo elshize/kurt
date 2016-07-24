@@ -44,14 +44,9 @@ Rectangle {
     Connections {
         target: textArea
         onTextChanged: {
-            console.log(editing)
             if (!textArea.persisting) edited()
             persisting = false
         }
-    }
-
-    Component.onCompleted: {
-        console.log(editing)
     }
 
     function setTextPersistEditing(t) {
