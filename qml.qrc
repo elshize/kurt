@@ -13,5 +13,6 @@
         <file>components/NativeLabel.qml</file>
         <file>icons/ic_library_books_black_48px.svg</file>
         <file>components/StandardShadow.qml</file>
+        <file>components/Fader.qml</file>
     </qresource>
 </RCC>

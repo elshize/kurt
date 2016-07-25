@@ -39,16 +39,47 @@ ApplicationWindow {
 
     ColumnLayout {
 
+        id: rightBottomPanel
+
         anchors.bottom: sheet.bottom
         anchors.left: sheet.right
         anchors.leftMargin: 10
         spacing: 0
+
+        NumberAnimation on opacity {
+            id: rightBottomPanelFadeIn
+            from: 0
+            to: 1
+            duration: 500
+        }
+
+        NumberAnimation on opacity {
+            id: rightBottomPanelFadeOut
+            from: 1
+            to: 0
+            duration: 500
+        }
 
         PageCount {
             id: pageCount
             sheet: sheet
         }
 
+        function show() {
+            if (opacity == 0) rightBottomPanelFadeIn.start()
+        }
+
+        function hide() {
+            if (opacity != 0) rightBottomPanelFadeOut.start()
+        }
+
+    }
+
+    Fader {
+        sheet: sheet
+        items: [
+            rightBottomPanel
+        ]
     }
 
     /***** Global shortcuts *****/
