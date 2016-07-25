@@ -1,6 +1,8 @@
-import QtQuick 2.0
+import QtQuick 2.7
 
 Item {
+
+    anchors.fill: parent
 
     property list<Item> items
     property KurtSheet sheet
@@ -39,6 +41,15 @@ Item {
     function fadeIn() {
         typing.stop()
         isTyping = false
+        for (var i = 0; i < items.length; i++) {
+            items[i].show()
+        }
+    }
+
+    function forceFadeIn() {
+        isTyping = false
+        idle.stop()
+        typing.stop()
         for (var i = 0; i < items.length; i++) {
             items[i].show()
         }

@@ -55,6 +55,7 @@ Flickable {
         }
 
         MouseArea {
+            id: mouseArea
             anchors.fill: parent
             cursorShape: Qt.IBeamCursor
             acceptedButtons: Qt.NoButton

@@ -16,6 +16,13 @@ ApplicationWindow {
         color: "#eee"
     }
 
+    MouseArea {
+        id: appMouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onMouseXChanged: fader.forceFadeIn()
+    }
+
     KurtSheet {
         id: sheet
 
@@ -76,6 +83,7 @@ ApplicationWindow {
     }
 
     Fader {
+        id: fader
         sheet: sheet
         items: [
             rightBottomPanel
