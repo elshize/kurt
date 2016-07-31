@@ -3,7 +3,9 @@ QT += qml quick widgets
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    fileio.cpp
+    fileio.cpp \
+    spellcheck.cpp \
+    spellchecksyntaxhighlighter.cpp
 
 RESOURCES += qml.qrc
 
@@ -14,4 +16,10 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    fileio.h
+    fileio.h \
+    spellcheck.h \
+    spellchecksyntaxhighlighter.h
+
+unix {
+    LIBS += /usr/lib/libhunspell.so
+}

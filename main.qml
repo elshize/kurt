@@ -34,6 +34,8 @@ ApplicationWindow {
         width: 800
 
         textArea.text: editStatusHandler.setTextPersistEditing(loadText())
+
+        Component.onCompleted: SpellCheck.setTextDocument(sheet.textArea.textDocument)
     }
 
     EditStatusHandler {
@@ -110,6 +112,11 @@ ApplicationWindow {
     Shortcut {
         sequence: "F4"
         onActivated: sheet.switchFocusMode()
+    }
+
+    Shortcut {
+        sequence: "F7"
+        onActivated: SpellCheck.toggle()
     }
 
 
