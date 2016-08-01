@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,7 +60,10 @@
     <g
        transform="translate(-16.327014,-390.12648)"
        id="g4724"
-       style="fill:#800080">
+       style="fill:#800080"
+       inkscape:export-filename="/home/elshize/qt/kurt/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          sodipodi:nodetypes="sccssscccccccccccsss"
          style="fill:#800080;fill-opacity:1"
