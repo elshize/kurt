@@ -1,5 +1,7 @@
 # Kurt
 
+![alt text][logo]
+
 TODO: description
 
 # Install
@@ -17,3 +19,5 @@ The executable will be installed as `/opt/kurt/bin/kurt`.
 # Dependencies
 
 qt >= 5.7
+
+[logo]: icons/kurt_logo.svg "Kurt"
