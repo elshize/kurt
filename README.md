@@ -19,5 +19,6 @@ The executable will be installed as `/opt/kurt/bin/kurt`.
 # Dependencies
 
 qt >= 5.7
+hunspell
 
 [logo]: https://github.com/elshize/kurt/blob/develop/logo.png "Kurt"
