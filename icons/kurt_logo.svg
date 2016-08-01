@@ -9,13 +9,16 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="32.636631mm"
-   height="35.277779mm"
-   viewBox="0 0 115.64161 125.00001"
+   width="35.098743mm"
+   height="34.924133mm"
+   viewBox="0 0 124.36563 123.74694"
    id="svg4728"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="kurt_logo.svg">
+   sodipodi:docname="kurt_logo.svg"
+   inkscape:export-filename="/home/elshize/qt/kurt/logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4730" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="150.14291"
-     inkscape:cy="-153.62214"
+     inkscape:zoom="1.4"
+     inkscape:cx="104.90736"
+     inkscape:cy="-59.548235"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -48,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,9 +59,9 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-186.20961,-69.79763)">
+     transform="translate(-181.84785,-70.424105)">
     <g
-       transform="translate(-16.327014,-390.12648)"
+       transform="matrix(0.96136066,-0.27529201,0.27529201,0.96136066,-150.08617,-298.2661)"
        id="g4724"
        style="fill:#800080"
        inkscape:export-filename="/home/elshize/qt/kurt/logo.png"
