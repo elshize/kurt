@@ -20,4 +20,4 @@ The executable will be installed as `/opt/kurt/bin/kurt`.
 
 qt >= 5.7
 
-[logo]: icons/kurt_logo.svg "Kurt"
+[logo]: https://github.com/elshize/kurt/blob/develop/logo.png "Kurt"
