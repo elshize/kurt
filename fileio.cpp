@@ -1,40 +1,45 @@
 #include "fileio.h"
+
 #include <QFile>
 #include <QTextStream>
 
+
 FileIO::FileIO(QObject *parent) : QObject(parent)
 {
+
 }
 
-FileIO::FileIO(QString f): file(f)
+FileIO::FileIO(std::unique_ptr<QFile> f) : pFile(std::move(f))
 {
+
 }
 
-void FileIO::save(QString text) {
+bool FileIO::save(QString text) {
 
-    file.open(QIODevice::ReadWrite | QIODevice::Truncate | QFile::Text);
-    QTextStream stream(&file);
+    if (!pFile) return false;
+    if (!pFile->open(QIODevice::ReadWrite | QIODevice::Truncate)) return false;
+    QTextStream stream(pFile.get());
     stream << text;
     stream.flush();
-    file.close();
+    pFile->close();
+
+    return true;
 
 }
 
-QString FileIO::load() {
+bool FileIO::load() {
 
-    file.open(QIODevice::ReadWrite | QFile::Text);
-    QTextStream stream(&file);
-    QString result = stream.readAll();
-    file.close();
-    return result;
+    if (pFile == 0) return false;
+    if (!pFile->open(QIODevice::ReadWrite | QFile::Text)) return false;
+    QTextStream stream(pFile.get());
+    mContent = stream.readAll();
+    pFile->close();
+    return true;
 
 }
 
-QString FileIO::name() {
-    return file.fileName();
-}
+void FileIO::setFile(QString fileName) {
 
-FileIO::~FileIO()
-{
+    pFile = std::unique_ptr<QFile>(new QFile(fileName));
 
 }

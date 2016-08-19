@@ -1,9 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ic_save_black_48px.svg</file>
-        <file>ic_mode_edit_black_48px.svg</file>
-        <file>KurtSheet.qml</file>
-        <file>EditStatusHandler.qml</file>
+        <file>icons/ic_save_black_48px.svg</file>
+        <file>icons/ic_mode_edit_black_48px.svg</file>
+        <file>components/KurtSheet.qml</file>
+        <file>components/EditStatusHandler.qml</file>
+        <file>components/ErrorWindow.qml</file>
+        <file>icons/ic_error_outline_black_48px.svg</file>
+        <file>components/CloseDialog.qml</file>
+        <file>icons/ic_info_outline_black_48px.svg</file>
+        <file>components/PageCount.qml</file>
+        <file>components/NativeLabel.qml</file>
+        <file>icons/ic_library_books_black_48px.svg</file>
+        <file>components/StandardShadow.qml</file>
+        <file>components/Fader.qml</file>
     </qresource>
 </RCC>
