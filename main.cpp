@@ -1,13 +1,15 @@
-#include <QApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
-#include <QCommandLineParser>
-#include <QTextDocument>
-#include <QQmlComponent>
-#include <QProcessEnvironment>
-#include <QSettings>
 #include "fileio.h"
 #include "spellcheck.h"
+
+#include <QApplication>
+#include <QCommandLineParser>
+#include <QProcessEnvironment>
+#include <QQmlApplicationEngine>
+#include <QQmlComponent>
+#include <QQmlContext>
+#include <QSettings>
+#include <QTextDocument>
+
 
 int main(int argc, char *argv[])
 {
@@ -22,16 +24,15 @@ int main(int argc, char *argv[])
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addPositionalArgument("file", QCoreApplication::translate("main", "Text file to edit."));
+    parser.addPositionalArgument("file", qApp->translate("main", "Text file to edit."));
     parser.process(app);
     const QStringList args = parser.positionalArguments();
 
-    QFile *file;
-    if (args.length() > 0) file = new QFile(args.at(0));
-    else file = 0;
+    std::unique_ptr<QFile> file;
+    if (args.length() > 0) file = std::unique_ptr<QFile>(new QFile(args.at(0)));
 
     engine.rootContext()->setContextProperty("SpellCheck", new SpellCheck());
-    engine.rootContext()->setContextProperty("FileIO", new FileIO(file));
+    engine.rootContext()->setContextProperty("FileIO", new FileIO(std::move(file)));
     engine.rootContext()->setContextProperty("Settings", new QSettings());
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
 

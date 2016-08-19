@@ -1,11 +1,12 @@
-#include <QObject>
-#include <QTextDocument>
-#include <QQuickTextDocument>
-#include <QSyntaxHighlighter>
-#include "spellchecksyntaxhighlighter.h"
-
 #ifndef SPELLCHECK_H
 #define SPELLCHECK_H
+
+#include "spellchecksyntaxhighlighter.h"
+
+#include <QObject>
+#include <QQuickTextDocument>
+#include <QSyntaxHighlighter>
+#include <QTextDocument>
 
 
 class SpellCheck : public QObject

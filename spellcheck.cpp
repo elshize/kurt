@@ -1,6 +1,7 @@
 #include "spellcheck.h"
 #include "spellchecksyntaxhighlighter.h"
 
+
 SpellCheck::SpellCheck(QObject *parent) : QObject(parent)
 {
 

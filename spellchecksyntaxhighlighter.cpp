@@ -1,6 +1,8 @@
 #include "spellchecksyntaxhighlighter.h"
-#include <QTextStream>
+
 #include <QStringRef>
+#include <QTextStream>
+
 
 SpellCheckSyntaxHighlighter::SpellCheckSyntaxHighlighter(QTextDocument *parent) : QSyntaxHighlighter(parent)
 {

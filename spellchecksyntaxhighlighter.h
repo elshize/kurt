@@ -1,12 +1,13 @@
-#include <QObject>
-#include <QSyntaxHighlighter>
-#include <QTextDocument>
-#include <QTextCodec>
-#include <QSettings>
-#include "hunspell/hunspell.hxx"
-
 #ifndef SPELLCHECKSYNTAXHIGHLIGHTER_H
 #define SPELLCHECKSYNTAXHIGHLIGHTER_H
+
+#include "hunspell/hunspell.hxx"
+
+#include <QObject>
+#include <QSettings>
+#include <QSyntaxHighlighter>
+#include <QTextCodec>
+#include <QTextDocument>
 
 
 class SpellCheckSyntaxHighlighter : public QSyntaxHighlighter

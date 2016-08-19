@@ -21,5 +21,5 @@ HEADERS += \
     spellchecksyntaxhighlighter.h
 
 unix {
-    LIBS += /usr/lib/libhunspell.so
+    LIBS += -L/usr/lib -L/usr/lib/x86_64-linux-gnu -lhunspell
 }
