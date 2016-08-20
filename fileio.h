@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE bool load();
     Q_INVOKABLE QString content() const { return mContent; }
     Q_INVOKABLE QString name() const { return pFile ? pFile->fileName() : "Untitled"; }
-    Q_INVOKABLE bool isSet() const { return nullptr != pFile; } // Yoda notation
+    Q_INVOKABLE bool isSet() const { return pFile != nullptr; }
     Q_INVOKABLE void setFile(QString fileName);
 
 signals:
